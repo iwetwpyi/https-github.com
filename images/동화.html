@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>로딩바 예제</title>
+    <style>
+         @font-face {
+            font-family: 'RixXladywatermelonR';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-4@1.0/RixXladywatermelonR.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* 세로 방향으로 정렬 */
+            height: 100vh;
+            background-color: #ece9e2;
+            margin: 0;
+        }
+
+        .loader {
+            width: 100%;
+            max-width: 500px; /* 최대 너비 설정 */
+            background-color: #7b7b7b3c;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            height: 35px; /* 높이 추가 */
+            margin-bottom: 20px; /* 로딩바와 텍스트 사이의 간격 */
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #ffeb7a;
+            animation: loading 5s forwards; /* 5초 동안 진행 후 멈춤 */
+        }
+
+        @keyframes loading {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .loading-text {
+            font-family: 'RixXladywatermelonR'; /* 폰트 패밀리 추가 */
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000a0;
+            text-align: center;
+        }
+
+        .img-container {
+            text-align: center; /* 중앙 정렬 */
+            margin-bottom: 10px; /* 로딩바와 이미지 간의 간격 */
+        }
+    </style>
+</head>
+<body>
+    <div class="img-container">
+        <img id="loadingImage" src="민들레1.jpg" width="50%" height="auto" alt="로딩 이미지">
+    </div>
+    <div class="loader">
+        <div class="progress"></div>
+    </div>
+    <div class="loading-text">로딩 중...</div>
+
+    <script>
+        const images = [
+            '민들레1.jpg',
+            '민들레2.jpg',
+            '민들레3.jpg',
+            '민들레4.jpg',
+            '민들레5.jpg',
+        ];
+
+        let currentIndex = 0;
+
+        function changeImage() {
+            const imageElement = document.getElementById('loadingImage');
+            imageElement.src = images[currentIndex];
+            currentIndex = (currentIndex + 1) % images.length; // 인덱스 순환
+        }
+
+        // 1초마다 이미지 변경
+        setInterval(changeImage, 1000);
+
+        // 5초 후 다음 페이지로 이동
+        setTimeout(function() {
+            window.location.href = 'home.html'; // 이동할 HTML 파일 경로
+        }, 5000); // 5000ms = 5초
+    </script>
+</body>
+</html>
