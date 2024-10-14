@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'RixXladywatermelonR';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-4@1.0/RixXladywatermelonR.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            position: relative;
+            user-select: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center; /* 가로 중앙 정렬 */
+            align-items: flex-end;   /* 세로 하단 정렬 */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            background-color: #f0f0f0; /* 배경 색 */
+            background-image: url("저기 멀리.png");
+        }
+
+        .container {
+            text-align: center;  /* 텍스트 중앙 정렬 */
+            position: fixed;
+            bottom: 10px;  /* 하단에서 10px 위로 */
+            left: 50%;     /* 가로 중앙으로 */
+            transform: translateX(-50%); /* 중앙 정렬을 위해 요소의 위치 조정 */
+            user-select: none;
+        }
+
+        .name {
+            font-family: 'RixXladywatermelonR'; /* 폰트 패밀리 추가 */
+            font-size: 20px;
+            background-color: #f9ed89;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            margin-left: 0px;
+            padding: 10px;
+            width: 100px;
+            user-select: none;
+        }
+
+        .text {
+            font-family: 'RixXladywatermelonR'; /* 폰트 패밀리 추가 */
+            font-size: 20px;
+            background-color: #FFFAE4;
+            border-radius: 5px;
+            padding: 30px;
+            width: 500px;
+            margin-top: 5px;
+            user-select: none;
+        }
+
+        .next {
+            width: 30px;
+            height: auto;
+            margin-top: 5px;
+            user-select: none;
+            cursor: pointer; /* 손가락 모양 커서 */
+            opacity: 30%;
+        }
+
+        .left, .right, .home {
+            width: 80px; /* 가로 크기 지정 */
+            height: auto; /* 비율 유지 */
+            position: absolute; /* 절대 위치 지정 */
+            user-select: none;
+            cursor: pointer; /* 손가락 모양 커서 */
+        }
+
+        .left {
+            left: 10px; /* 왼쪽 버튼 위치 */
+            top: 50%; /* 세로 중앙 위치 */
+            transform: translateY(-50%); /* 버튼을 중앙 정렬 */
+        }
+
+        .right {
+            right: 10px; /* 오른쪽 버튼 위치 */
+            top: 50%; /* 세로 중앙 위치 */
+            transform: translateY(-50%); /* 버튼을 중앙 정렬 */
+        }
+
+        .home {
+            left: 10px; /* 홈 버튼 위치 */
+            top: 10px; /* 상단에서 10px 위치 */
+        }
+        
+    </style>
+</head>
+<body id="background">
+
+    <img src="아이콘_홈.png" class="home" id="homeButton">
+    <img src="아이콘_왼.png" class="left" id="leftButton">
+    <img src="아이콘_오른.png" class="right" id="rightButton">
+
+    <div class="container">
+        <div class="name">홀씨</div>
+        <div class="text" id="text-box">저기 멀리...</div>
+        <img src="말풍선_세모.png" class="next" onclick="changeText()">
+    </div>
+
+    <script>
+        document.getElementById("homeButton").onclick = function() {
+            window.location.href = "home.html"; // 이동할 HTML 파일 경로
+        };
+
+        document.getElementById("leftButton").onclick = function() {
+            window.location.href = "2-3.html"; // 이동할 HTML 파일 경로
+        };
+        
+        document.getElementById("rightButton").onclick = function() {
+            window.location.href = "5.html"; // 이동할 HTML 파일 경로
+        };
+
+        // 여러 개의 텍스트와 배경 이미지를 배열에 저장
+        const texts = [
+            '저기 멀리...',
+            '해가 아주 잘 드는 너른 들판에는',
+            '광활한 민들레 꽃밭이 펼쳐져 있다던데...',
+            '흠...',
+            '나도 샛노란 꽃을 피우고 싶어!'
+        ];
+
+        const backgrounds = [
+            'url("저기 멀리.png")',
+            'url("들판에는.png")',
+            'url("꽃밭이.png")',
+            'url("흠....png")',
+            'url("나도 샛노란.png")'
+        ];
+
+        let currentIndex = 0;  // 현재 텍스트의 인덱스를 추적
+
+function changeText() {
+    // 현재 인덱스가 마지막 텍스트에 도달했는지 확인
+    if (currentIndex < texts.length - 1) {
+        currentIndex++;  // 인덱스를 증가시킴
+        document.getElementById('text-box').innerText = texts[currentIndex];
+        document.getElementById('background').style.backgroundImage = backgrounds[currentIndex];
+    }
+}
+    </script>
+
+</body>
+</html>
